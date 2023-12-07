@@ -4,12 +4,11 @@ import { PartModel } from "../models/PartModel";
 async function getParts() {
   const URL = `${SERVER_URL}/parts`;
 
-  const data = fetch(URL, { method: "GET" })
+  const data = fetch(URL, { method: "GET", next: { revalidate: 0 } })
     .then((response) => response.json())
     .then((data: PartModel[]) => data)
     .catch((error) => {
       if (error instanceof Error) {
-        console.log(error);
         return error.message;
       } else {
         return "Not found";

@@ -1,6 +1,9 @@
 import { LineItemModel } from "./LineItemModel";
 
 export interface OrderModel {
-  lineItems: LineItemModel[];
+  lineItems: {
+    part: LineItemModel;
+    cost: number;
+  }[];
   totalCost: number;
 }

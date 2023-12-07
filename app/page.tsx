@@ -1,14 +1,22 @@
+import ContentContainer from "@/components/ContentContainer";
+import Part from "@/components/Part";
+import AddNewPartSection from "@/components/Sections/AddNewPartSection";
 import getParts from "@/utils/queries/getParts";
-import Image from "next/image";
 
 export default async function Home() {
   const data = await getParts();
 
-  console.log("hello?", data);
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Test
-    </main>
+    <ContentContainer>
+      <h1 className="pb-6 text-3xl">Available parts for purchase</h1>
+      {typeof data !== "string" && (
+        <>
+          {data.map((item) => (
+            <Part key={`part_${item.id}`} part={item} />
+          ))}
+          <AddNewPartSection lastId={data[data.length - 1].id} />
+        </>
+      )}
+    </ContentContainer>
   );
 }

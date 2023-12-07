@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 import { ButtonHTMLAttributes } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -34,4 +33,4 @@ function NavButton(props: Props) {
   );
 }
 
-export default React.forwardRef(NavButton);
+export default NavButton;
