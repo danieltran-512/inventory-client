@@ -18,6 +18,9 @@ export default function AddPartModal(props: Props) {
 
   const { loading, error, addNewPart } = useAddNewPart();
 
+  const ref = React.useRef<HTMLFormElement>(null);
+  const router = useRouter();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -37,15 +40,12 @@ export default function AddPartModal(props: Props) {
     handleOpen();
   };
 
-  const ref = React.useRef<HTMLFormElement>(null);
-  const router = useRouter();
-
   React.useEffect(() => {
     if (!isOpen) {
       ref.current?.reset();
       router.refresh();
     }
-  }, [isOpen]);
+  }, [isOpen, router]);
 
   return (
     <Modal isOpen={isOpen}>
