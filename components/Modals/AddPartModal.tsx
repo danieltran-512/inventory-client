@@ -81,6 +81,7 @@ export default function AddPartModal(props: Props) {
               placeholder="10.99"
               name="price"
               type="number"
+              step="0.01"
               required
             />
           </label>
