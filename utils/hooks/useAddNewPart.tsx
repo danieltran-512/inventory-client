@@ -9,7 +9,7 @@ export default function useAddNewPart() {
 
   const URL = `${SERVER_URL}/parts`;
 
-  const addNewPart = (input: PartModel) => {
+  const addNewPart = async (input: PartModel) => {
     setLoading(true);
     fetch(URL, {
       method: "POST",
