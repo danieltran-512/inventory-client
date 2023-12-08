@@ -16,7 +16,7 @@ interface Props {
 export default function AddPartModal(props: Props) {
   const { isOpen, handleOpen, lastId } = props;
 
-  const { loading, error, addNewPart } = useAddNewPart();
+  const { data, loading, error, addNewPart } = useAddNewPart();
 
   const ref = React.useRef<HTMLFormElement>(null);
   const router = useRouter();
@@ -36,10 +36,6 @@ export default function AddPartModal(props: Props) {
     };
 
     await addNewPart(item);
-
-    handleOpen();
-
-    router.refresh();
   };
 
   React.useEffect(() => {
@@ -49,6 +45,13 @@ export default function AddPartModal(props: Props) {
 
     router.refresh();
   }, [isOpen, router]);
+
+  React.useEffect(() => {
+    if (!loading && data) {
+      handleOpen();
+      router.refresh();
+    }
+  }, [loading, data]);
 
   return (
     <Modal isOpen={isOpen}>

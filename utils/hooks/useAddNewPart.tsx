@@ -10,6 +10,7 @@ export default function useAddNewPart() {
   const URL = `${SERVER_URL}/parts`;
 
   const addNewPart = async (input: PartModel) => {
+    setError("");
     setLoading(true);
     fetch(URL, {
       method: "POST",
@@ -27,7 +28,10 @@ export default function useAddNewPart() {
         }
         return resp.json();
       })
-      .then((res: PartModel) => setData(res))
+      .then((res: PartModel) => {
+        setData(res);
+        setLoading(false);
+      })
       .catch((error) => {
         console.log(error);
         if (error instanceof Error) {
@@ -35,8 +39,8 @@ export default function useAddNewPart() {
         } else {
           setError("Not Found");
         }
+        setLoading(false);
       });
-    setLoading(false);
   };
 
   return { data, error, loading, addNewPart };
