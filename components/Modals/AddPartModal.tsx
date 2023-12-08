@@ -39,6 +39,12 @@ export default function AddPartModal(props: Props) {
   };
 
   React.useEffect(() => {
+    if (!isOpen) {
+      ref.current?.reset();
+    }
+  }, [isOpen]);
+
+  React.useEffect(() => {
     if (!loading && data) {
       handleOpen();
       router.refresh();
