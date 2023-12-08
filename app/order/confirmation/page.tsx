@@ -11,10 +11,10 @@ interface Props {
 export default async function Confirmation(props: Props) {
   const { searchParams } = props;
 
-  const partItems = searchParams["partItems"];
-
   const order = await getOrder({
-    partItems: JSON.parse(partItems ? partItems.toString() : "[]"),
+    partItems: JSON.parse(
+      searchParams["partItems"] ? searchParams["partItems"].toString() : "[]"
+    ),
   });
 
   return (

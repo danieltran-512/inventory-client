@@ -38,6 +38,8 @@ export default function AddPartModal(props: Props) {
     addNewPart(item);
 
     handleOpen();
+
+    router.refresh();
   };
 
   React.useEffect(() => {

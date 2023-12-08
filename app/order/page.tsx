@@ -44,7 +44,9 @@ export default function Page() {
 
     router.push(href);
 
-    emptyCart();
+    setTimeout(() => {
+      emptyCart();
+    }, 2000);
   };
 
   return (
